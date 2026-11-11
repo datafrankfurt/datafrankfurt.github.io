@@ -96,8 +96,8 @@ window.BOARD = {
 
     { id: "linkedin-follow", type: "link", frame: "writing", x: 1500, y: 1420, w: 330,
       title: "Read my posts on LinkedIn",
-      body: "linkedin.com/in/egarcia-sv",
-      url: "https://www.linkedin.com/in/egarcia-sv/recent-activity/all/" },
+      body: "linkedin.com/in/eduardo-at-datafrankfurt",
+      url: "https://www.linkedin.com/in/eduardo-at-datafrankfurt/recent-activity/all/" },
 
     // ---- Experiments -----------------------------------------------------
     { id: "gametheory", type: "project", frame: "lab", x: 2080, y: 890, w: 330, glyph: "matrix",
@@ -114,7 +114,7 @@ window.BOARD = {
 
     // ---- Contact ---------------------------------------------------------
     { id: "c-linkedin", type: "link", frame: "contact", x: 2080, y: 1500, w: 230,
-      title: "LinkedIn", body: "egarcia-sv", url: "https://www.linkedin.com/in/egarcia-sv/" },
+      title: "LinkedIn", body: "eduardo-at-datafrankfurt", url: "https://www.linkedin.com/in/eduardo-at-datafrankfurt/" },
     { id: "c-github", type: "link", frame: "contact", x: 2340, y: 1500, w: 230,
       title: "GitHub", body: "egarcia00", url: "https://github.com/egarcia00" },
     { id: "c-impressum", type: "link", frame: "contact", x: 2600, y: 1500, w: 200,
