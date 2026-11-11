@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Data Frankfurt · Eduardo Garcia</title>
+  <meta name="description" content="The working board of Eduardo Garcia: data projects, experiments and writing from Frankfurt am Main.">
+  <meta property="og:title" content="Data Frankfurt">
+  <meta property="og:description" content="Data projects, experiments and writing by Eduardo Garcia, Frankfurt am Main.">
+  <meta property="og:url" content="https://datafrankfurt.de/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="viewport" class="viewport" aria-label="Project board">
+    <div id="board" class="board">
+      <svg id="wires" class="wires" aria-hidden="true"></svg>
+    </div>
+  </div>
+
+  <main id="list" class="list" hidden></main>
+
+  <nav class="toolbar" aria-label="Board controls">
+    <button type="button" data-action="zoom-out" aria-label="Zoom out">&minus;</button>
+    <output id="zoomlevel" aria-live="polite">100%</output>
+    <button type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
+    <button type="button" data-action="fit">Fit to screen</button>
+    <button type="button" data-action="tidy" title="Put moved cards back">Tidy up</button>
+    <button type="button" data-action="view" aria-pressed="false">List view</button>
+  </nav>
+
+  <noscript>
+    <p class="noscript">Data Frankfurt is the project board of Eduardo Garcia. Turn on JavaScript to see it, or visit
+      <a href="https://github.com/egarcia00">github.com/egarcia00</a>.</p>
+  </noscript>
+
+  <script src="data.js"></script>
+  <script src="board.js"></script>
+</body>
+</html>
