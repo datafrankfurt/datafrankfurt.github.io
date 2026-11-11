@@ -160,7 +160,6 @@ body.view-list .viewport { display: none; }
 body.view-list .toolbar [data-action="zoom-in"],
 body.view-list .toolbar [data-action="zoom-out"],
 body.view-list .toolbar [data-action="fit"],
-body.view-list .toolbar [data-action="tidy"],
 body.view-list .toolbar output { display: none; }
 .list h1 { margin: 0; font: 800 clamp(56px, 13vw, 104px)/0.9 var(--display); letter-spacing: -0.045em; }
 .list .lede { font-size: 20px; margin: 18px 0 32px; max-width: 34ch; }
@@ -173,8 +172,8 @@ body.view-list .toolbar output { display: none; }
 
 @media (max-width: 640px) {
   .toolbar { left: 8px; right: 8px; bottom: 8px; justify-content: space-between; overflow-x: auto; }
-  .toolbar [data-action="tidy"] { display: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .board.is-animating { transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+  .card.is-returning { transition: left .45s cubic-bezier(.3, 1.4, .5, 1), top .45s cubic-bezier(.3, 1.4, .5, 1); }
 }

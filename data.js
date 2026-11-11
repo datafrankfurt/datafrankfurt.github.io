@@ -13,7 +13,7 @@
 
 window.BOARD = {
   frames: [
-    { id: "sports",   title: "Sports analytics",   caption: "Basketball, networks and play-by-play data", x: 120,  y: 140,  w: 800, h: 690 },
+    { id: "sports",   title: "Sports analytics",   caption: "Basketball, networks and play-by-play data", x: 120,  y: 260,  w: 600, h: 440 },
     { id: "finance",  title: "Finance & investing", caption: "Portfolios, risk and simulation",          x: 2040, y: 140,  w: 800, h: 450 },
     { id: "products", title: "Data products & AI",  caption: "Tools built for teams that run on data",   x: 120,  y: 1060, w: 800, h: 460 },
     { id: "writing",  title: "Writing",             caption: "Posts I publish on LinkedIn",              x: 1080, y: 1300, w: 800, h: 320 },
@@ -33,30 +33,15 @@ window.BOARD = {
 
     { id: "howto", type: "note", color: "yellow", x: 1520, y: 1005, w: 260, rotate: 2,
       title: "How to read this board",
-      body: "Drag the background to move around. Pinch or Ctrl + scroll to zoom. Cards can be moved too." },
+      body: "Drag the background to move around. Pinch or Ctrl + scroll to zoom." },
 
     // ---- Sports analytics ------------------------------------------------
-    { id: "playbyplay", type: "project", frame: "sports", x: 160, y: 240, w: 330, glyph: "line",
-      title: "playbyplay",
-      body: "A Streamlit app that turns NBA play-by-play logs into interactive game visualisations.",
-      tags: ["Streamlit", "Python"],
-      url: "https://github.com/egarcia00/playbyplay" },
-
-    { id: "nbanet", type: "project", frame: "sports", x: 540, y: 240, w: 330, glyph: "network",
-      title: "Playing styles in 6,600 NBA games",
-      body: "Classifies playing styles across 6,600 NBA games with network analysis and unsupervised clustering.",
-      tags: ["Network analysis", "Clustering"],
-      url: "https://github.com/egarcia00/NBA_NetworkAnalysis" },
-
-    { id: "nbapbp", type: "project", frame: "sports", x: 160, y: 540, w: 330, glyph: "matrix",
-      title: "NBA play-by-play networks",
-      body: "Building player networks out of NBA play-by-play data.",
-      tags: ["Jupyter", "Graphs"],
-      url: "https://github.com/egarcia00/NBA_Network_PBP" },
-
-    { id: "sportsnote", type: "note", frame: "sports", color: "blue", x: 560, y: 570, w: 260, rotate: -2,
-      title: "Why basketball?",
-      body: "Every possession is a small network. Thousands of games make a dataset big enough to find real patterns." },
+    { id: "knicks", type: "project", frame: "sports", x: 170, y: 370, w: 500, glyph: "network",
+      title: "The Network Is The Offense",
+      body: "Every made basket of the Knicks' 2026 playoff run, mapped as an assist network: node size is points scored, every edge is a pass that became a bucket.",
+      tags: ["NBA", "Network analysis", "Cloud Run"],
+      url: "https://knicks-playoff-run-362940142596.europe-west3.run.app/",
+      cta: "Open the app" },
 
     // ---- Finance ---------------------------------------------------------
     { id: "portopt", type: "project", frame: "finance", x: 2080, y: 240, w: 340, glyph: "bars",

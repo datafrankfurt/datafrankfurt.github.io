@@ -6,7 +6,6 @@
   var wires = document.getElementById("wires");
   var list = document.getElementById("list");
   var zoomOut = document.getElementById("zoomlevel");
-  var STORE = "datafrankfurt-positions-v1";
 
   var view = { x: 0, y: 0, s: 1 };
   var MIN = 0.2, MAX = 2;
@@ -19,13 +18,6 @@
     if (text) n.textContent = text;
     return n;
   }
-  function loadPositions() {
-    try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch (e) { return {}; }
-  }
-  function savePositions(p) {
-    try { localStorage.setItem(STORE, JSON.stringify(p)); } catch (e) { /* storage unavailable */ }
-  }
-  var saved = loadPositions();
 
   var GLYPHS = {
     network: '<circle class="fill" cx="8" cy="30" r="4"/><circle class="fill" cx="30" cy="8" r="4"/><circle class="fill" cx="40" cy="32" r="4"/><circle class="fill" cx="64" cy="14" r="4"/><path d="M8 30L30 8L40 32L64 14M8 30L40 32M30 8L64 14"/>',
@@ -76,7 +68,7 @@
       n.appendChild(ul);
     }
     if (c.type === "project" && c.url) {
-      var m = el("a", "more", "View the code");
+      var m = el("a", "more", c.cta || "View the code");
       m.href = c.url; m.target = "_blank"; m.rel = "noopener";
       n.appendChild(m);
     }
@@ -96,8 +88,7 @@
     });
     data.cards.forEach(function (c) {
       var n = renderCard(c);
-      var p = saved[c.id] || { x: c.x, y: c.y };
-      n.style.left = p.x + "px"; n.style.top = p.y + "px";
+      n.style.left = c.x + "px"; n.style.top = c.y + "px";
       n.style.width = c.w + "px";
       if (c.rotate) n.style.transform = "rotate(" + c.rotate + "deg)";
       board.appendChild(n);
@@ -233,9 +224,13 @@
     if (pinch) { if (Object.keys(pointers).length < 2) pinch = null; return; }
     if (drag) {
       if (drag.moved) {
-        drag.el.classList.remove("is-dragging");
-        saved[drag.id] = { x: drag.el.offsetLeft, y: drag.el.offsetTop };
-        savePositions(saved);
+        // cards always spring back to their place
+        var home = data.cards.filter(function (c) { return c.id === drag.id; })[0];
+        var card = drag.el;
+        card.classList.remove("is-dragging");
+        card.classList.add("is-returning");
+        card.style.left = home.x + "px"; card.style.top = home.y + "px";
+        setTimeout(function () { card.classList.remove("is-returning"); }, 500);
         suppressClick = true;
         setTimeout(function () { suppressClick = false; }, 0);
       }
@@ -329,12 +324,6 @@
       case "zoom-in": zoomAt(1.25, W, H, true); break;
       case "zoom-out": zoomAt(0.8, W, H, true); break;
       case "fit": fitTo(bounds(), true); break;
-      case "tidy":
-        saved = {}; savePositions(saved);
-        data.cards.forEach(function (c) {
-          cardEls[c.id].style.left = c.x + "px"; cardEls[c.id].style.top = c.y + "px";
-        });
-        break;
       case "view": setView(document.body.classList.contains("view-list") ? "board" : "list"); break;
     }
   });
