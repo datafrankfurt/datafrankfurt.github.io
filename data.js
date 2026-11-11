@@ -8,17 +8,19 @@
     project – a project card (glyph: "network" | "bars" | "line" | "flow" | "grid" | "matrix")
     post    – a blog post card (date, url, summary)
     link    – a simple link card
+    photo   – a pinned picture (image, caption, rotate)
+  Project cards can also show a screenshot on top: add  image: "assets/file.jpg", alt: "…"
   Frames are the labelled areas cards sit in. A card belongs to a frame via `frame`.
 */
 
 window.BOARD = {
   frames: [
-    { id: "sports",   title: "Sports analytics",   caption: "Basketball, networks and play-by-play data", x: 120,  y: 260,  w: 600, h: 440 },
-    { id: "finance",  title: "Finance & investing", caption: "Portfolios, risk and simulation",          x: 2040, y: 140,  w: 800, h: 450 },
-    { id: "products", title: "Data products & AI",  caption: "Tools built for teams that run on data",   x: 120,  y: 1060, w: 800, h: 460 },
+    { id: "sports",   title: "Sports analytics",   caption: "Basketball, networks and play-by-play data", x: 80,   y: 170,  w: 940, h: 600 },
+    { id: "finance",  title: "Finance & investing", caption: "Portfolios, risk and simulation",          x: 2040, y: 140,  w: 800, h: 640 },
+    { id: "products", title: "Data products & AI",  caption: "Tools built for teams that run on data",   x: 80,   y: 1030, w: 940, h: 720 },
     { id: "writing",  title: "Writing",             caption: "Posts I publish on LinkedIn",              x: 1080, y: 1300, w: 800, h: 320 },
-    { id: "lab",      title: "Experiments",         caption: "Small things built out of curiosity",      x: 2040, y: 790,  w: 800, h: 430 },
-    { id: "contact",  title: "Find me",             caption: "",                                         x: 2040, y: 1400, w: 800, h: 300 }
+    { id: "lab",      title: "Experiments",         caption: "Small things built out of curiosity",      x: 2040, y: 900,  w: 800, h: 430 },
+    { id: "contact",  title: "Find me",             caption: "",                                         x: 2040, y: 1480, w: 800, h: 260 }
   ],
 
   cards: [
@@ -36,15 +38,21 @@ window.BOARD = {
       body: "Drag the background to move around. Pinch or Ctrl + scroll to zoom." },
 
     // ---- Sports analytics ------------------------------------------------
-    { id: "knicks", type: "project", frame: "sports", x: 170, y: 370, w: 500, glyph: "network",
+    { id: "knicks", type: "project", frame: "sports", x: 120, y: 270, w: 500,
+      image: "assets/knicks-hero.jpg", alt: "The Network Is The Offense: Knicks assist network over the app's title",
       title: "The Network Is The Offense",
       body: "Every made basket of the Knicks' 2026 playoff run, mapped as an assist network: node size is points scored, every edge is a pass that became a bucket.",
       tags: ["NBA", "Network analysis", "Cloud Run"],
       url: "https://knicks-playoff-run-362940142596.europe-west3.run.app/",
       cta: "Open the app" },
 
+    { id: "knicks-series", type: "photo", frame: "sports", x: 660, y: 330, w: 320, rotate: 3,
+      image: "assets/knicks-series.jpg", alt: "Round 1 summary: Knicks beat Atlanta 4-2",
+      caption: "Round 1: four rounds, one pattern" },
+
     // ---- Finance ---------------------------------------------------------
-    { id: "portopt", type: "project", frame: "finance", x: 2080, y: 240, w: 340, glyph: "bars",
+    { id: "portopt", type: "project", frame: "finance", x: 2080, y: 240, w: 340,
+      image: "assets/portfolio-frontier.png", alt: "Scatter of simulated portfolios by risk and return, with the best performer highlighted",
       title: "Portfolio optimisation",
       body: "Runs scenarios on historical prices to find the mix of stocks with the lowest risk for the highest return.",
       tags: ["Optimisation", "Jupyter"],
@@ -57,13 +65,15 @@ window.BOARD = {
       url: "https://github.com/egarcia00/Portfolio_Simulator" },
 
     // ---- Data products & AI ----------------------------------------------
-    { id: "dch", type: "project", frame: "products", x: 160, y: 1160, w: 340, glyph: "flow",
+    { id: "dch", type: "project", frame: "products", x: 120, y: 1130, w: 420,
+      image: "assets/datacontracthub.jpg", alt: "DataContractHub demo page: Automate data contracts at scale with AI",
       title: "DataContractHub",
       body: "A multi-agent AI system that drafts and manages ODCS-compliant data contracts. Built for a hackathon.",
       tags: ["AI agents", "Data contracts"],
       url: "https://github.com/egarcia00/DataContractHub" },
 
-    { id: "crm", type: "project", frame: "products", x: 550, y: 1160, w: 330, glyph: "grid",
+    { id: "crm", type: "project", frame: "products", x: 580, y: 1130, w: 400,
+      image: "assets/crm.jpg", alt: "Streamlit CRM dashboard with customer list and assets-under-management timeline",
       title: "Streamlit CRM",
       body: "A CRM dashboard with assets-under-management timelines, customer comments and a Snowflake-ready data layer.",
       tags: ["Streamlit", "Snowflake"],
@@ -85,24 +95,24 @@ window.BOARD = {
       url: "https://www.linkedin.com/in/eduardo-at-datafrankfurt/recent-activity/all/" },
 
     // ---- Experiments -----------------------------------------------------
-    { id: "gametheory", type: "project", frame: "lab", x: 2080, y: 890, w: 330, glyph: "matrix",
+    { id: "gametheory", type: "project", frame: "lab", x: 2080, y: 1000, w: 330, glyph: "matrix",
       title: "Game theory simulations",
       body: "Game theory simulations in a notebook, inspired by Veritasium's video on the topic.",
       tags: ["Simulation", "Jupyter"],
       url: "https://github.com/egarcia00/GameTheory_Veritasium" },
 
-    { id: "nodo", type: "project", frame: "lab", x: 2470, y: 890, w: 330, glyph: "grid",
+    { id: "nodo", type: "project", frame: "lab", x: 2470, y: 1000, w: 330, glyph: "grid",
       title: "Nodo & Company website",
       body: "The website for Nodo and Company.",
       tags: ["Web"],
       url: "https://github.com/egarcia00/nodo-and-company-website" },
 
     // ---- Contact ---------------------------------------------------------
-    { id: "c-linkedin", type: "link", frame: "contact", x: 2080, y: 1500, w: 230,
+    { id: "c-linkedin", type: "link", frame: "contact", x: 2080, y: 1580, w: 230,
       title: "LinkedIn", body: "eduardo-at-datafrankfurt", url: "https://www.linkedin.com/in/eduardo-at-datafrankfurt/" },
-    { id: "c-github", type: "link", frame: "contact", x: 2340, y: 1500, w: 230,
+    { id: "c-github", type: "link", frame: "contact", x: 2340, y: 1580, w: 230,
       title: "GitHub", body: "egarcia00", url: "https://github.com/egarcia00" },
-    { id: "c-impressum", type: "link", frame: "contact", x: 2600, y: 1500, w: 200,
+    { id: "c-impressum", type: "link", frame: "contact", x: 2600, y: 1580, w: 200,
       title: "Impressum", body: "Legal notice", url: "impressum.html", internal: true }
   ],
 

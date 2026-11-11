@@ -38,7 +38,18 @@
       n.appendChild(el("p", "", c.sub));
       return n;
     }
-    if (c.type === "project" && GLYPHS[c.glyph]) {
+    if (c.image) {
+      var fig = el("figure", "shot");
+      var img = el("img");
+      img.src = c.image; img.alt = c.alt || ""; img.loading = "lazy"; img.draggable = false;
+      fig.appendChild(img);
+      if (c.caption) fig.appendChild(el("figcaption", "", c.caption));
+      fig.tabIndex = 0;
+      fig.setAttribute("role", "button");
+      fig.setAttribute("aria-label", "Enlarge image: " + (c.alt || c.title || ""));
+      n.appendChild(fig);
+      if (c.type === "photo") return n;
+    } else if (c.type === "project" && GLYPHS[c.glyph]) {
       var g = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       g.setAttribute("class", "glyph");
       g.setAttribute("viewBox", "0 0 72 40");
@@ -268,7 +279,7 @@
   });
 
   document.addEventListener("keydown", function (e) {
-    if (document.body.classList.contains("view-list")) return;
+    if (document.body.classList.contains("view-list") || !box.hidden) return;
     if (e.target.matches("input, textarea")) return;
     var W = viewport.clientWidth / 2, H = viewport.clientHeight / 2, step = 80;
     switch (e.key) {
@@ -283,6 +294,36 @@
     }
     e.preventDefault();
   });
+
+  // ---------- image lightbox ----------
+  var box = el("div", "lightbox");
+  box.hidden = true;
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-modal", "true");
+  var boxImg = el("img"), boxCap = el("p"), boxClose = el("button", "lightbox-close", "Close");
+  boxClose.type = "button";
+  box.appendChild(boxImg); box.appendChild(boxCap); box.appendChild(boxClose);
+  document.body.appendChild(box);
+  var lastFocus = null;
+  function openBox(fig) {
+    var img = fig.querySelector("img");
+    boxImg.src = img.src; boxImg.alt = img.alt;
+    var cap = fig.querySelector("figcaption");
+    boxCap.textContent = cap ? cap.textContent : img.alt;
+    lastFocus = fig; box.hidden = false; boxClose.focus();
+  }
+  function closeBox() { box.hidden = true; if (lastFocus) lastFocus.focus({ preventScroll: true }); }
+  box.addEventListener("click", function (e) { if (e.target !== boxImg) closeBox(); });
+  document.addEventListener("click", function (e) {
+    if (suppressClick) return;
+    var fig = e.target.closest && e.target.closest(".shot");
+    if (fig && !box.contains(fig)) openBox(fig);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!box.hidden && e.key === "Escape") { closeBox(); return; }
+    var fig = e.target.closest && e.target.closest(".shot");
+    if (fig && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openBox(fig); }
+  }, true);
 
   // ---------- list view ----------
   function buildList() {
