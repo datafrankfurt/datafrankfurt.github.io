@@ -52,9 +52,9 @@ window.BOARD = {
 
     // ---- Finance ---------------------------------------------------------
     { id: "portopt", type: "project", frame: "finance", x: 2080, y: 240, w: 340,
-      image: "assets/portfolio-frontier.png", alt: "Scatter of simulated portfolios by risk and return, with the 20 single assets, the S&P 500 and the chosen mix marked",
+      image: "assets/portfolio-frontier.png", alt: "Scatter of simulated portfolios by risk and return: a star marks the mix with the most growth per unit of risk, a horizontal line what the S&P 500 grew, a vertical line the lowest risk found",
       title: "Portfolio optimisation",
-      body: "Can 20 assets beat the index? Apple, Costco, gold, oil, water and more, split 10,000 ways, re-simulated every trading day on five years of prices and compared with the S&P 500. Try your own split.",
+      body: "Can 20 assets beat the index? Apple, Costco, gold, oil, water and more, split 10,000 ways to find the mix with the most growth for the least risk. Re-simulated every trading day on five years of prices and compared with the S&P 500. Try your own split.",
       tags: ["Optimisation", "20 assets", "Cloud Run", "Daily refresh"],
       url: "https://portfolio-optimization-362940142596.europe-west3.run.app/",
       cta: "Open the app" },
