@@ -52,11 +52,12 @@ window.BOARD = {
 
     // ---- Finance ---------------------------------------------------------
     { id: "portopt", type: "project", frame: "finance", x: 2080, y: 240, w: 340,
-      image: "assets/portfolio-frontier.png", alt: "Scatter of simulated portfolios by risk and return, with the best performer highlighted",
+      image: "assets/portfolio-frontier.png", alt: "Scatter of simulated portfolios by risk and return, with the 20 single assets, the S&P 500 and the chosen mix marked",
       title: "Portfolio optimisation",
-      body: "Runs scenarios on historical prices to find the mix of stocks with the lowest risk for the highest return.",
-      tags: ["Optimisation", "Jupyter"],
-      url: "https://github.com/egarcia00/Portfolio_Optimization_Medium" },
+      body: "Can 20 assets beat the index? Apple, Costco, gold, oil, water and more, split 10,000 ways, re-simulated every trading day on five years of prices and compared with the S&P 500. Try your own split.",
+      tags: ["Optimisation", "20 assets", "Cloud Run", "Daily refresh"],
+      url: "https://portfolio-optimization-362940142596.europe-west3.run.app/",
+      cta: "Open the app" },
 
     { id: "portsim", type: "project", frame: "finance", x: 2470, y: 240, w: 330, glyph: "line",
       title: "Portfolio simulator",
